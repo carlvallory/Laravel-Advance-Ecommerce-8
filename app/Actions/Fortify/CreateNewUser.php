@@ -23,9 +23,7 @@ class CreateNewUser implements CreatesNewUsers
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            // validate for BD phone number only
-            //'phone_number' => 'required|regex:/(^(\+88|0088)?(01){1}[3456789]{1}(\d){8})$/',
-            'phone_number' => 'required|regex:/(01)[0-9]{9}/',
+            'phone_number' => 'required|regex:/[0-9]{10}/',
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
         ])->validate();

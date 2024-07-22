@@ -1,7 +1,7 @@
 <div id="hero">
 <div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm">
     @foreach ($sliders as $slider)
-    <div class="item" style="background-image: url({{ asset($slider->slider_image) }});">
+    <div class="item" style="background-image: url({{ (!strpos($slider->slider_image, "http")===false) ? asset($slider->slider_image) : $slider->slider_image }});">
         <div class="container-fluid">
             <div class="caption bg-color vertical-center text-left">
             {{-- <div class="slider-header fadeInDown-1">Top Brands</div> --}}

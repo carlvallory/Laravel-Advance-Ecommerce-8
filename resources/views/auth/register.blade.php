@@ -174,21 +174,21 @@
         @enderror
         <div class="form-group">
 		    <label class="info-title" for="exampleInputEmail1">Phone Number <span>*</span></label>
-		    <input type="text" name="phone_number" class="form-control unicase-form-control text-input" id="exampleInputEmail1">
+		    <input type="text" name="phone_number" class="form-control unicase-form-control text-input" id="exampleInputPhoneNumber">
 		</div>
         @error('phone_number')
             <span class="alert text-danger">{{ $message }}</span>
         @enderror
         <div class="form-group">
 		    <label class="info-title" for="exampleInputEmail1">Password <span>*</span></label>
-		    <input type="password" name="password" class="form-control unicase-form-control text-input" id="exampleInputEmail1">
+		    <input type="password" name="password" class="form-control unicase-form-control text-input" id="exampleInputPassword">
 		</div>
         @error('password')
             <span class="alert text-danger">{{ $message }}</span>
         @enderror
          <div class="form-group">
 		    <label class="info-title" for="exampleInputEmail1">Confirm Password <span>*</span></label>
-		    <input type="password" name="password_confirmation" class="form-control unicase-form-control text-input" id="exampleInputEmail1">
+		    <input type="password" name="password_confirmation" class="form-control unicase-form-control text-input" id="exampleInputPasswordConfirmation">
 		</div>
         @error('password_confirmation')
             <span class="alert text-danger">{{ $message }}</span>

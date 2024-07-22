@@ -7,21 +7,21 @@
         <input type="hidden" name="id" value="{{ $user->id }}">
         <div class="form-group">
             <label class="info-title" for="exampleInputEmail1">Name <span>*</span></label>
-            <input type="name" name="name" class="form-control unicase-form-control text-input" id="exampleInputEmail1" value={{ $user->name }}>
+            <input type="name" name="name" class="form-control unicase-form-control text-input" id="exampleInputName" value={{ $user->name }}>
         </div>
         @error('name')
             <span class="alert text-danger">{{ $message }}</span>
         @enderror
         <div class="form-group">
             <label class="info-title" for="exampleInputEmail1">Email Address <span>*</span></label>
-            <input type="email" name="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1" value="{{ $user->email }}">
+            <input type="email" name="email" class="form-control unicase-form-control text-input" id="exampleInputEmail" value="{{ $user->email }}">
         </div>
         @error('email')
             <span class="alert text-danger">{{ $message }}</span>
         @enderror
         <div class="form-group">
             <label class="info-title" for="exampleInputEmail1">Phone Number <span>*</span></label>
-            <input type="text" name="phone_number" class="form-control unicase-form-control text-input" id="exampleInputEmail1" value="{{ $user->phone_number }}">
+            <input type="text" name="phone_number" class="form-control unicase-form-control text-input" id="exampleInputPhoneNumber" value="{{ $user->phone_number }}">
         </div>
         @error('phone_number')
             <span class="alert text-danger">{{ $message }}</span>

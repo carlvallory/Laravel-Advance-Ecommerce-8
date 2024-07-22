@@ -99,35 +99,35 @@
         @csrf
 		<div class="form-group">
 	    	<label class="info-title" for="exampleInputEmail2">Email Address <span>*</span></label>
-	    	<input type="email" name="email" class="form-control unicase-form-control text-input" id="exampleInputEmail2">
+	    	<input type="email" name="email" class="form-control unicase-form-control text-input" id="exampleInputEmail">
 	  	</div>
           @error('email')
             <span class="alert text-danger">{{ $message }}</span>
           @enderror
         <div class="form-group">
 		    <label class="info-title" for="exampleInputEmail1">Name <span>*</span></label>
-		    <input type="text" name="name" class="form-control unicase-form-control text-input" id="exampleInputEmail1">
+		    <input type="text" name="name" class="form-control unicase-form-control text-input" id="exampleInputName">
 		</div>
         @error('name')
             <span class="alert text-danger">{{ $message }}</span>
         @enderror
         <div class="form-group">
 		    <label class="info-title" for="exampleInputEmail1">Phone Number <span>*</span></label>
-		    <input type="text" name="phone_number" class="form-control unicase-form-control text-input" id="exampleInputEmail1">
+		    <input type="text" name="phone_number" class="form-control unicase-form-control text-input" id="exampleInputPhoneNumber">
 		</div>
         @error('phone_number')
             <span class="alert text-danger">{{ $message }}</span>
         @enderror
         <div class="form-group">
 		    <label class="info-title" for="exampleInputEmail1">Password <span>*</span></label>
-		    <input type="password" name="password" class="form-control unicase-form-control text-input" id="exampleInputEmail1">
+		    <input type="password" name="password" class="form-control unicase-form-control text-input" id="exampleInputPassword">
 		</div>
         @error('password')
             <span class="alert text-danger">{{ $message }}</span>
         @enderror
          <div class="form-group">
 		    <label class="info-title" for="exampleInputEmail1">Confirm Password <span>*</span></label>
-		    <input type="password" name="password_confirmation" class="form-control unicase-form-control text-input" id="exampleInputEmail1">
+		    <input type="password" name="password_confirmation" class="form-control unicase-form-control text-input" id="exampleInputPasswordConfirmation">
 		</div>
         @error('password_confirmation')
             <span class="alert text-danger">{{ $message }}</span>
