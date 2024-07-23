@@ -9,7 +9,7 @@ use App\Models\ShipDivision;
 use App\Models\Shipping;
 use App\Models\ShipState;
 use Illuminate\Http\Request;
-use Cart;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
