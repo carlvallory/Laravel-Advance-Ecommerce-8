@@ -209,6 +209,11 @@
     // End to Cart Product
 </script>
 <script type="text/javascript">
+    function strpos(haystack, needle, offset) {
+        const i = (haystack + '').indexOf(needle, offset || 0)
+        return i === -1 ? false : i
+    }
+
     function miniCart(){
         $.ajax({
             type: 'GET',
@@ -224,7 +229,7 @@
                         <div class="row">
                             <div class="col-xs-4">
                                 <div class="image">
-                                    <a href="#"><img src="/${value.options.image}" alt=""></a>
+                                    <a href="#"><img src="${(!strpos(value.options.image, "http") === false) ? '/'+value.options.image : value.options.image}" alt=""></a>
                                 </div>
                             </div>
                             <div class="col-xs-7">

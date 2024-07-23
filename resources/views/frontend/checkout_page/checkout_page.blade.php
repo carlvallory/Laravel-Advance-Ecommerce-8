@@ -1,7 +1,7 @@
 @extends('frontend.frontend_master')
 
 @section('title')
-    Al Araf Fashion - Checkout Page
+    Nacion Media - Checkout Page
 @endsection
 
 @section('frontend_content')
@@ -72,40 +72,28 @@
                                         <h4 class="checkout-subtitle"><b>Address Bar</b></h4>
 
                                         <div class="form-group">
-                                            <h5>Division Select <span class="text-danger">*</span></h5>
+                                            <h5>Departamento<span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <select class="custom-select form-control unicase-form-control" aria-label="Division Select" name="division_id">
-                                                    <option selected>Select Division Name</option>
-                                                    @foreach ($divisions as $division)
-                                                        <option value="{{ $division->id }}">
-                                                            {{ $division->division_name }}</option>
-                                                    @endforeach
+                                                <input type="hidden" name="division_id">
+                                                <select class="custom-select form-control unicase-form-control" aria-label="State Select" name="state_id">
+                                                    <option selected="" disabled="">Select state Name</option>
+                                                    <option value="18">Asunción</option>
                                                 </select>
                                             </div>
-                                            @error('division_id')
+                                            @error('state_id')
                                                 <span class="alert text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
 
                                         <div class="form-group">
-                                            <h5>District Select <span class="text-danger">*</span></h5>
+                                            <h5>Ciudad <span class="text-danger">*</span></h5>
                                             <div class="controls">
                                                 <select class="custom-select form-control unicase-form-control" aria-label="District Select" name="district_id">
                                                     <option selected="" disabled="">Select district Name</option>
+                                                    <option value="1">Asunción</option>
                                                 </select>
                                             </div>
                                             @error('district_id')
-                                                <span class="alert text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <h5>State Select <span class="text-danger">*</span></h5>
-                                            <div class="controls">
-                                                <select class="custom-select form-control unicase-form-control" aria-label="State Select" name="state_id">
-                                                    <option selected="" disabled="">Select state Name</option>
-                                                </select>
-                                            </div>
-                                            @error('state_id')
                                                 <span class="alert text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
@@ -141,14 +129,14 @@
                     <div class="panel-group">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4 class="unicase-checkout-title">Your Checkout Progress</h4>
+                                <h4 class="unicase-checkout-title">Checkout</h4>
                             </div>
                             <div class="___class_+?71___">
                                 <ul class="nav nav-checkout-progress list-unstyled">
                                     @foreach ($carts as $item)
                                         <li>
                                             <strong>Image: </strong>
-                                            <img src="{{ asset($item->options->image) }}"
+                                            <img src="{{ (!strpos($item->options->image, "http") === false) ? asset($item->options->image) : $item->options->image }}"
                                                 style="height: 50px; width: 50px;" alt="">
                                         </li>
                                         <li>
@@ -226,49 +214,4 @@
         </div><!-- /.row -->
     </div>
 @section('frontend_script')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript">
-            $(document).ready(function() {
-                $('select[name="division_id"]').on('change', function(){
-                    var division_id = $(this).val();
-                    if(division_id) {
-                        $.ajax({
-                            url: "{{  url('/division/district/ajax') }}/"+division_id,
-                            type:"GET",
-                            dataType:"json",
-                            success:function(data) {
-                                $('select[name="state_id"]').html('');
-                                var d =$('select[name="district_id"]').empty();
-                                    $.each(data, function(key, value){
-                                        $('select[name="district_id"]').append('<option value="'+ value.id +'">' + value.district_name + '</option>');
-                                    });
-                            },
-                        });
-                    } else {
-                        alert('danger');
-                    }
-                });
-            });
-        $(document).ready(function() {
-            $('select[name="district_id"]').on('change', function(){
-                var district_id = $(this).val();
-                if(district_id) {
-                    $.ajax({
-                        url: "{{  url('/district/state/ajax') }}/"+district_id,
-                        type:"GET",
-                        dataType:"json",
-                        success:function(data) {
-                            var d =$('select[name="state_id"]').empty();
-                                $.each(data, function(key, value){
-                                    $('select[name="state_id"]').append('<option value="'+ value.id +'">' + value.state_name + '</option>');
-                                });
-                        },
-                    });
-                } else {
-                    alert('danger');
-                }
-            });
-        });
-    </script>
-@endsection
 @endsection
