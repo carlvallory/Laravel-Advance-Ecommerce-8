@@ -142,10 +142,10 @@
                                         <li>
                                             <strong>Qty:</strong>
                                             {{ $item->qty }}
-                                            <strong>Color:</strong>
+                                            {{-- <strong>Color:</strong>
                                             {{ $item->options->color }}
                                             <strong>Size:</strong>
-                                            {{ $item->options->size }}
+                                            {{ $item->options->size }} --}}
                                         </li>
                                     @endforeach
                                     <hr>
