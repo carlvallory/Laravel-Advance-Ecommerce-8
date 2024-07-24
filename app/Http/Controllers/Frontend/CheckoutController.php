@@ -107,18 +107,33 @@ class CheckoutController extends Controller
         $cart_qty = Cart::count();
         $cart_total = Cart::total();
 
-        if($request->payment_method == 'stripe'){
-            return view('frontend.payment.stripe', compact(
-                'data',
-                'cart_total',
-            ));
-        }elseif($request->payment_method == 'card'){
-            return "card";
-        }else{
-            return view('frontend.payment.cod', compact(
-                'data',
-                'cart_total',
-            ));
+        switch ($request->payment_method) {
+            case 'stripe':
+                return view('frontend.payment.stripe', compact(
+                    'data',
+                    'cart_total',
+                ));
+                break;
+            case 'card':
+                return "card";
+                break;
+            case 'bancard':
+                return view('frontend.payment.bancard', compact(
+                    'data',
+                    'cart_total',
+                ));
+                break;
+            case 'pagopar':
+                return view('frontend.payment.pagopar', compact(
+                    'data',
+                    'cart_total',
+                ));
+                break;
+            default:
+                return view('frontend.payment.cod', compact(
+                    'data',
+                    'cart_total',
+                ));
         }
     }
 
