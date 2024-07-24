@@ -184,7 +184,29 @@
                                     <h4 class="unicase-checkout-title">Select Payment Method</h4>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <input type="radio" name="payment_method" value="bancard" class="block" style="margin:auto; margin-top:4px;">
+                                            </div>
+                                            <div class="col-md-9">
+                                                <label for="">Bancard</label>
+                                                <img src="{{ asset('frontend/assets/images/payments/bancard-200px.png') }}" height="20" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <input type="radio" name="payment_method" value="pagopar" class="block" style="margin:auto; margin-top:4px;">
+                                            </div>
+                                            <div class="col-md-9">
+                                                <label for="">Pagopar</label>
+                                                <img src="{{ asset('frontend/assets/images/payments/pagopar-200px.png') }}" height="20" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- <div class="col-md-4">
                                         <label for="">Stripe</label>
                                         <input type="radio" name="payment_method" id="" value="stripe">
                                         <img src="{{ asset('frontend/assets/images/payments/4.png') }}" alt="">
@@ -198,7 +220,7 @@
                                         <label for="">COD</label>
                                         <input type="radio" name="payment_method" id="" value="cod">
                                         <img src="{{ asset('frontend/assets/images/payments/6.png') }}" alt="">
-                                    </div>
+                                    </div> --}}
                                     @error('payment_method')
                                         <span class="alert text-danger">{{ $message }}</span>
                                     @enderror
