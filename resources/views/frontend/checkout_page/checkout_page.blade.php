@@ -184,7 +184,7 @@
                                     <h4 class="unicase-checkout-title">Select Payment Method</h4>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-3">
+                                    {{-- <div class="col-md-3">
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <input type="radio" name="payment_method" value="bancard" class="block" style="margin:auto; margin-top:4px;">
@@ -194,7 +194,7 @@
                                                 <img src="{{ asset('frontend/assets/images/payments/bancard-200px.png') }}" height="20" alt="">
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="col-md-3">
                                         <div class="row">
                                             <div class="col-md-3">
