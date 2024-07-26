@@ -16,6 +16,46 @@
         border-radius: 3px;
     }
 
+    .pagopar-box h3 {
+        font-size: 1.5em;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        font-weight: bold;
+    }
+
+    .pagopar-box h4 {
+        font-size: 1.25em;
+        margin-block-start: 1.33em;
+        margin-block-end: 1.33em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        font-weight: bold;
+    }
+
+    .pagopar-box p {
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+    }
+
+    .pagopar-box a {
+        color: #2196F3 !important;
+    }
+
+    .pagopar-box a:-webkit-any-link {
+        color: -webkit-link;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    .pagopar-box span.price {
+        float: right;
+        color: grey;
+    }
+
     .pagopar-box input[type=text] {
         width: 100%;
         margin-bottom: 20px;
@@ -27,6 +67,8 @@
     .pagopar-box label {
         margin-bottom: 10px;
         display: block;
+        font-size: 17px;
+        font-weight: normal;
     }
 
     .pagopar-box .icon-container {
