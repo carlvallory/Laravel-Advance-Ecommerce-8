@@ -7,6 +7,7 @@
 @section('frontend_style')
 
 <style>
+
     /**
  * The CSS shown here will not be introduced in the Quickstart guide, but shows
  * how you can use CSS to style your Element's container.
@@ -34,78 +35,105 @@
 @endsection
 
 @section('frontend_content')
-    <div class="checkout-box ">
+    <div class="pagopar-box">
         <div class="row">
-            <div class="col-md-6">
-                <!-- checkout-progress-sidebar -->
-                <div class="checkout-progress-sidebar ">
-                    <div class="panel-group">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="unicase-checkout-title">Your Shopping Amount</h4>
-                            </div>
-                            <div class="">
-                                <ul class="nav nav-checkout-progress list-unstyled">
-                                    <hr>
-                                    <li>
-                                        @if (Session::has('coupon'))
-                                            <strong>SubTotal: </strong> ${{ $cart_total }}
-                                            <hr>
-                                            <strong>Coupon Name: </strong> {{ session()->get('coupon')['coupon_name'] }}
-                                            ( {{ session()->get('coupon')['coupon_discount'] }} %)
-                                            <hr>
-                                            <strong>Coupon Discount:
-                                            </strong>(-)${{ session()->get('coupon')['discount_amount'] }}
-                                            <hr>
-                                            <strong>Grand Total: </strong>${{ session()->get('coupon')['total_amount'] }}
-                                            <hr>
-                                        @else
-                                            <strong>SubTotal: </strong> ${{ $cart_total }}
-                                            <hr>
-                                            <strong>Grand Total: </strong> ${{ $cart_total }}
-                                            <hr>
-                                        @endif
+          <div class="col-md-9">
+            <div class="container">
+              <form action="/action_page.php">
 
-                                    </li>
+                <div class="row">
+                  <div class="col-md-6">
+                    <h3>Billing Address</h3>
+                    <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+                    <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
+                    <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                    <input type="text" id="email" name="email" placeholder="john@example.com">
+                    <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+                    <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
+                    <label for="city"><i class="fa fa-institution"></i> City</label>
+                    <input type="text" id="city" name="city" placeholder="New York">
 
-                                </ul>
-                            </div>
-                            <div class="panel-footer" style="background-color: white;">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label for="state">State</label>
+                        <input type="text" id="state" name="state" placeholder="NY">
+                      </div>
+                      <div class="col-md-6">
+                        <label for="zip">Zip</label>
+                        <input type="text" id="zip" name="zip" placeholder="10001">
+                      </div>
+                    </div>
+                  </div>
 
-                                    <div class="panel-group" style="clear: both; margin-bottom:34px;">
-                                        <form action="{{ route('stripe.order') }}" method="post" id="payment-form">
-                                            @csrf
-                                            <div class="form-row">
+                  <div class="col-md-6">
+                    <h3>Payment</h3>
+                    <label for="fname">Accepted Cards</label>
+                    <div class="icon-container">
+                      <i class="fa fa-cc-visa" style="color:navy;"></i>
+                      <i class="fa fa-cc-amex" style="color:blue;"></i>
+                      <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                      <i class="fa fa-cc-discover" style="color:orange;"></i>
+                    </div>
+                    <label for="cname">Name on Card</label>
+                    <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+                    <label for="ccnum">Credit card number</label>
+                    <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+                    <label for="expmonth">Exp Month</label>
+                    <input type="text" id="expmonth" name="expmonth" placeholder="September">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label for="expyear">Exp Year</label>
+                        <input type="text" id="expyear" name="expyear" placeholder="2018">
+                      </div>
+                      <div class="col-md-6">
+                        <label for="cvv">CVV</label>
+                        <input type="text" id="cvv" name="cvv" placeholder="352">
+                      </div>
+                    </div>
+                  </div>
 
-                                                <input type="hidden" name="shipping_name" value="{{ $data['shipping_name'] }}">
-                                                <input type="hidden" name="shipping_email" value="{{ $data['shipping_email'] }}">
-                                                <input type="hidden" name="shipping_phone" value="{{ $data['shipping_phone'] }}">
-                                                <input type="hidden" name="shipping_postCode" value="{{ $data['shipping_postCode'] }}">
-                                                <input type="hidden" name="division_id" value="{{ $data['division_id'] }}">
-                                                <input type="hidden" name="district_id" value="{{ $data['district_id'] }}">
-                                                <input type="hidden" name="state_id" value="{{ $data['state_id'] }}">
-                                                <input type="hidden" name="shipping_address" value="{{ $data['shipping_address'] }}">
-                                                <input type="hidden" name="shipping_notes" value="{{ $data['shipping_notes'] }}">
-
-                                                <!-- Used to display Element errors. -->
-                                                <div id="card-errors" role="alert"></div>
-                                            </div>
-                                            <br>
-                                            <button class="btn btn-primary" style="float: right;">Submit Payment</button>
-                                          </form>
-                                    </div>
-
-                            </div>
-                        </div>
-                    </div> <!-- Panel Group -->
                 </div>
-                <!-- checkout-progress-sidebar -->
+                <label>
+                  <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+                </label>
+                <input type="submit" value="Continue to checkout" class="btn">
+              </form>
             </div>
-            <div class="col-md-6">
+          </div>
+          <div class="col-md-3">
+            <div class="container">
+              <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>4</b></span></h4>
+              <p><a href="#">Product 1</a> <span class="price">$15</span></p>
+              <p><a href="#">Product 2</a> <span class="price">$5</span></p>
+              <p><a href="#">Product 3</a> <span class="price">$8</span></p>
+              <p><a href="#">Product 4</a> <span class="price">$2</span></p>
+              <hr>
+              <p>Total <span class="price" style="color:black"><b>${{ $cart_total }}</b></span></p>
+            </div>
 
+            <div class="container">
+              <form action="{{ route('stripe.order') }}" method="post" id="payment-form">
+                @csrf
+                <div class="form-row">
+
+                    <input type="hidden" name="shipping_name" value="{{ $data['shipping_name'] }}">
+                    <input type="hidden" name="shipping_email" value="{{ $data['shipping_email'] }}">
+                    <input type="hidden" name="shipping_phone" value="{{ $data['shipping_phone'] }}">
+                    <input type="hidden" name="shipping_postCode" value="{{ $data['shipping_postCode'] }}">
+                    <input type="hidden" name="division_id" value="{{ $data['division_id'] }}">
+                    <input type="hidden" name="district_id" value="{{ $data['district_id'] }}">
+                    <input type="hidden" name="state_id" value="{{ $data['state_id'] }}">
+                    <input type="hidden" name="shipping_address" value="{{ $data['shipping_address'] }}">
+                    <input type="hidden" name="shipping_notes" value="{{ $data['shipping_notes'] }}">
+
+                    <!-- Used to display Element errors. -->
+                    <div id="card-errors" role="alert"></div>
+                </div>
+                <br>
+                <button class="btn btn-primary">Submit Payment</button>
+              </form>
             </div>
-            </div><!-- /.row -->
-            <hr>
+          </div>
         </div>
     </div>
 @endsection

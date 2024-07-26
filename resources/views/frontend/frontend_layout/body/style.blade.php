@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/bootstrap.min.css">
 
 <!-- Customizable CSS -->
+<link rel="stylesheet" href="/css/app.css">
 <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/main.css">
 <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/blue.css">
 <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/owl.carousel.css">
