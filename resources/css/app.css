@@ -62,6 +62,7 @@
         padding: 12px;
         border: 1px solid #ccc;
         border-radius: 3px;
+        font-size: 13px;
     }
 
     .pagopar-box label {
@@ -91,10 +92,6 @@
 
     .pagopar-box .btn:hover {
         background-color: #45a049;
-    }
-
-    .pagopar-box a {
-        color: #2196F3;
     }
 
     .pagopar-box hr {

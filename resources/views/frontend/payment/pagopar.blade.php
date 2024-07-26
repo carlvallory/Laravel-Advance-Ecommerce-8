@@ -130,7 +130,7 @@
                     <div id="card-errors" role="alert"></div>
                 </div>
                 <br>
-                <button class="btn btn-primary">Submit Payment</button>
+                <!-- <button class="btn btn-primary">Submit Payment</button> -->
               </form>
             </div>
           </div>
