@@ -32399,7 +32399,7 @@ select {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.pagopar-box {
+.pagopar-box, .checkout-box {
   margin-top: 20px;
   margin-bottom: 50px;
   padding-left: 50px;
@@ -32459,6 +32459,9 @@ select {
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 3px;
+}
+
+.pagopar-box input, .checkout-box input {
   font-size: 13px;
 }
 
