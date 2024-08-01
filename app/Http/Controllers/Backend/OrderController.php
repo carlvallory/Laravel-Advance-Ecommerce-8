@@ -8,7 +8,7 @@ use App\Models\OrderItem;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Services\OrderService;
-use PDF;
+use App\Helpers\PDFs;
 
 class OrderController extends Controller
 {
@@ -232,12 +232,13 @@ class OrderController extends Controller
         $order = Order::whereId($order_id)->first();
         $orderItems = OrderItem::where('order_id', $order->id)->orderBy('id', 'DESC')->get();
 
-        $pdf = PDF::loadView('frontend.order.invoice-download', compact('order','orderItems'))
+        $pdf = PDFs::loadViews('frontend.order.invoice-download', compact('order','orderItems'))
             ->setPaper('a4')
             ->setOptions([
                 'tempDir' => public_path(),
                 'chroot' => public_path(),
             ]);
+
         return $pdf->download('invoice.pdf');
     }
 }
