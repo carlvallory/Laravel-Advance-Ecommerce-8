@@ -10,6 +10,22 @@ class ShoppingCart extends Cart {
         return Cart::add($id, $name, $qty, $price, $weight, $options);
     }
 
+    public static function cartUpdate($rowId, $qty){
+        return Cart::update($rowId, $qty);
+    }
+
+    public static function cartRemove($rowId) {
+        return Cart::remove($rowId);
+    }
+
+    public static function cartGet($rowId) {
+        return Cart::get($rowId);
+    }
+
+    public static function cartDestroy() {
+        return Cart::destroy();
+    }
+
     public static function cartContent() {
         return Cart::content();
     }
@@ -23,11 +39,4 @@ class ShoppingCart extends Cart {
         return Cart::total($decimals, $decimalPoint, $thousandSeperator);
     }
 
-    public static function cartRemove($rowId) {
-        return Cart::remove($rowId);
-    }
-
-    public static function cartDestroy() {
-        return Cart::destroy();
-    }
 }

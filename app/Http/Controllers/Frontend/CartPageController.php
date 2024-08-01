@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Coupon;
 use Carbon\Carbon;
-use Cart;
+use App\Helpers\ShoppingCart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Prophecy\Call\Call;
@@ -21,9 +21,9 @@ class CartPageController extends Controller
     public function showmyCartList()
     {
 
-        $carts = Cart::content();
-        $cart_qty = Cart::count();
-        $cart_total = Cart::total();
+        $carts = ShoppingCart::cartContent();
+        $cart_qty = ShoppingCart::cartCount();
+        $cart_total = ShoppingCart::CartTotal();
 
         return response()->json([
             'carts' => $carts,
@@ -34,15 +34,15 @@ class CartPageController extends Controller
 
     public function removeFromCart($rowId)
     {
-        Cart::remove($rowId);
+        ShoppingCart::cartRemove($rowId);
         if (Session::has('coupon')) {
             $coupon_name = Session::get('coupon')['coupon_name'];
             $coupon = Coupon::where('coupon_name', $coupon_name)->first();
             Session::put('coupon',[
                 'coupon_name' => $coupon->coupon_name,
                 'coupon_discount' => $coupon->coupon_discount,
-                'discount_amount' => round(Cart::total() * $coupon->coupon_discount/100),
-                'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount/100)
+                'discount_amount' => round(ShoppingCart::cartTotal() * $coupon->coupon_discount/100),
+                'total_amount' => round(ShoppingCart::cartTotal() - (ShoppingCart::cartTotal() * $coupon->coupon_discount/100))
             ]);
         }
         return response()->json(['success' => 'Product Remove from Cart'],200);
@@ -50,8 +50,8 @@ class CartPageController extends Controller
 
     public function addQtyToCart($rowId)
     {
-        $cart_product=Cart::get($rowId);
-        Cart::update($rowId, $cart_product->qty + 1);
+        $cart_product=ShoppingCart::cartGet($rowId);
+        ShoppingCart::cartUpdate($rowId, $cart_product->qty + 1);
 
         if (Session::has('coupon')) {
             $coupon_name = Session::get('coupon')['coupon_name'];
@@ -59,8 +59,8 @@ class CartPageController extends Controller
             Session::put('coupon',[
                 'coupon_name' => $coupon->coupon_name,
                 'coupon_discount' => $coupon->coupon_discount,
-                'discount_amount' => round(Cart::total() * $coupon->coupon_discount/100),
-                'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount/100)
+                'discount_amount' => round(ShoppingCart::cartTotal() * $coupon->coupon_discount/100),
+                'total_amount' => round(ShoppingCart::cartTotal() - (ShoppingCart::cartTotal() * $coupon->coupon_discount/100))
             ]);
         }
         return response()->json(['success' => 'Product Qty Increamented'],200);
@@ -68,16 +68,16 @@ class CartPageController extends Controller
 
     public function reduceQtyFromCart($rowId)
     {
-        $cart_product=Cart::get($rowId);
-        Cart::update($rowId, $cart_product->qty - 1);
+        $cart_product=ShoppingCart::cartGet($rowId);
+        ShoppingCart::cartUpdate($rowId, $cart_product->qty - 1);
         if (Session::has('coupon')) {
             $coupon_name = Session::get('coupon')['coupon_name'];
             $coupon = Coupon::where('coupon_name', $coupon_name)->first();
             Session::put('coupon',[
                 'coupon_name' => $coupon->coupon_name,
                 'coupon_discount' => $coupon->coupon_discount,
-                'discount_amount' => round(Cart::total() * $coupon->coupon_discount/100),
-                'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount/100)
+                'discount_amount' => round(ShoppingCart::cartTotal() * $coupon->coupon_discount/100),
+                'total_amount' => round(ShoppingCart::cartTotal() - (ShoppingCart::cartTotal() * $coupon->coupon_discount/100))
             ]);
         }
         return response()->json(['error' => 'Product Qty Decremented'],200);
@@ -91,8 +91,8 @@ class CartPageController extends Controller
             Session::put('coupon',[
                 'coupon_name' => $coupon->coupon_name,
                 'coupon_discount' => $coupon->coupon_discount,
-                'discount_amount' => round(Cart::total() * $coupon->coupon_discount/100),
-                'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount/100)
+                'discount_amount' => round(ShoppingCart::cartTotal() * $coupon->coupon_discount/100),
+                'total_amount' => round(ShoppingCart::cartTotal() - ShoppingCart::cartTotal() * $coupon->coupon_discount/100)
             ]);
             return response()->json(array(
                 'validity' => true,
@@ -106,7 +106,7 @@ class CartPageController extends Controller
         {
             if (Session::has('coupon')) {
                 return response()->json([
-                    'subtotal' => Cart::total(),
+                    'subtotal' => ShoppingCart::cartTotal(),
                     'coupon_name' => session()->get('coupon')['coupon_name'],
                     'coupon_discount' => session()->get('coupon')['coupon_discount'],
                     'discount_amount' => session()->get('coupon')['discount_amount'],
@@ -114,7 +114,7 @@ class CartPageController extends Controller
                 ],200);
             }else{
                 return response()->json([
-                    'total' => Cart::total(),
+                    'total' => ShoppingCart::cartTotal(),
                 ],200);
             }
         }
