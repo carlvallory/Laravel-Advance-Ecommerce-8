@@ -6,7 +6,7 @@ use Gloudemans\Shoppingcart\Cart;
 
 class ShoppingCart extends Cart {
 
-    public static function addToCart($id, $name = null, $qty = null, $price = null, $weight = 0, array $options = []) {
+    public static function cartAdd($id, $name = null, $qty = null, $price = null, $weight = 0, array $options = []) {
         return Cart::add($id, $name, $qty, $price, $weight, $options);
     }
 
@@ -23,11 +23,11 @@ class ShoppingCart extends Cart {
         return Cart::total($decimals, $decimalPoint, $thousandSeperator);
     }
 
-    public static function removeFromCart($rowId) {
+    public static function cartRemove($rowId) {
         return Cart::remove($rowId);
     }
 
-    public static function destroyCart() {
+    public static function cartDestroy() {
         return Cart::destroy();
     }
 }

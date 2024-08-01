@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Helpers\ShoppingCart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Log;
+use Exception;
 
 class CartController extends Controller
 {
@@ -19,55 +21,74 @@ class CartController extends Controller
             Session::forget('coupon');
         }
 
-        if($product->discount_price == NULL){
-            ShoppingCart::addToCart([
-                'id' => $id,
-                'name' => $request->product_name,
-                'qty' => $request->qty,
-                'price' => $product->selling_price,
-                'weight' => 1,
-                'options' => [
-                    'image' => $product->product_thumbnail,
-                    'size' => $request->size,
-                    'color' => $request->color,
-                    ]
-            ]);
+        try {
 
-            return response()->json(['success' => 'Successfully added on your cart'],200);
-        }else{
-            ShoppingCart::addToCart([
-                'id' => $id,
-                'name' => $request->product_name,
-                'qty' => $request->qty,
-                'price' => $product->discount_price,
-                'weight' => 1,
-                'options' => [
-                    'image' => $product->product_thumbnail,
-                    'size' => $request->size,
-                    'color' => $request->color,
-                    ]
-            ]);
-            return response()->json(['success' => 'Successfully added on your cart'],200);
+            if($product->discount_price == NULL){
+                ShoppingCart::cartAdd([
+                    'id' => $id,
+                    'name' => $request->product_name,
+                    'qty' => $request->qty,
+                    'price' => $product->selling_price,
+                    'weight' => 1,
+                    'options' => [
+                        'image' => $product->product_thumbnail,
+                        'size' => $request->size,
+                        'color' => $request->color,
+                        ]
+                ]);
+
+                return response()->json(['success' => 'Successfully added on your cart'],200);
+            }else{
+                ShoppingCart::cartAdd([
+                    'id' => $id,
+                    'name' => $request->product_name,
+                    'qty' => $request->qty,
+                    'price' => $product->discount_price,
+                    'weight' => 1,
+                    'options' => [
+                        'image' => $product->product_thumbnail,
+                        'size' => $request->size,
+                        'color' => $request->color,
+                        ]
+                ]);
+                return response()->json(['success' => 'Successfully added on your cart'],200);
+            }
+
+        } catch(Exception $e) {
+            Log::alert($e);
+            return response()->json(['error' => $e], 500);
         }
     }
 
     public function getMiniCart()
     {
-        $carts = ShoppingCart::cartContent();
-        $cart_qty = ShoppingCart::cartCount();
-        $cart_total = ShoppingCart::cartTotal();
+        try {
 
-        return response()->json([
-            'carts' => $carts,
-            'cart_qty' => $cart_qty,
-            'cart_total' => round($cart_total),
-        ], 200);
+            $carts = ShoppingCart::cartContent();
+            $cart_qty = ShoppingCart::cartCount();
+            $cart_total = ShoppingCart::cartTotal();
+
+            return response()->json([
+                'carts' => $carts,
+                'cart_qty' => $cart_qty,
+                'cart_total' => round($cart_total),
+            ], 200);
+
+        } catch(Exception $e) {
+            Log::alert($e);
+            return response()->json(['error' => $e], 500);
+        }
     }
 
     public function removeMiniCart($rowId)
     {
-        ShoppingCart::removeFromCart($rowId);
-        return response()->json(['success' => 'Product Remove from Cart'],200);
+        try {
+            ShoppingCart::cartRemove($rowId);
+            return response()->json(['success' => 'Product Remove from Cart'],200);
+        } catch(Exception $e) {
+            Log::alert($e);
+            return response()->json(['error' => $e], 500);
+        }
     }
 
 }
