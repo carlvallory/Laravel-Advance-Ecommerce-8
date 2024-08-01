@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\ShipDivision;
 use Illuminate\Http\Request;
-use Cart;
+use App\Helpers\ShoppingCart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -20,7 +20,7 @@ class CartController extends Controller
         }
 
         if($product->discount_price == NULL){
-            Cart::add([
+            ShoppingCart::addToCart([
                 'id' => $id,
                 'name' => $request->product_name,
                 'qty' => $request->qty,
@@ -35,7 +35,7 @@ class CartController extends Controller
 
             return response()->json(['success' => 'Successfully added on your cart'],200);
         }else{
-            Cart::add([
+            ShoppingCart::addToCart([
                 'id' => $id,
                 'name' => $request->product_name,
                 'qty' => $request->qty,
@@ -53,9 +53,9 @@ class CartController extends Controller
 
     public function getMiniCart()
     {
-        $carts = Cart::content();
-        $cart_qty = Cart::count();
-        $cart_total = Cart::total();
+        $carts = ShoppingCart::cartContent();
+        $cart_qty = ShoppingCart::cartCount();
+        $cart_total = ShoppingCart::cartTotal();
 
         return response()->json([
             'carts' => $carts,
@@ -66,7 +66,7 @@ class CartController extends Controller
 
     public function removeMiniCart($rowId)
     {
-        Cart::remove($rowId);
+        ShoppingCart::removeFromCart($rowId);
         return response()->json(['success' => 'Product Remove from Cart'],200);
     }
 
