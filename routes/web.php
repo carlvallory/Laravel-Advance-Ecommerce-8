@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CODController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\ShippingDistrictController;
@@ -188,17 +189,37 @@ Route::middleware(['auth:admin'])->group(function(){
 
 
         // Orders routes
-        Route::resource('/orders', OrderController::class);
-        Route::get('/orders/pending/index', [OrderController::class, 'pendingOrderIndex'])->name('pending.orders');
-        Route::get('/orders/confirmed/index', [OrderController::class, 'confirmedOrderIndex'])->name('confirmed.orders');
-        Route::get('/orders/processing/index', [OrderController::class, 'processingOrderIndex'])->name('processing.orders');
-        Route::get('/orders/picked/index', [OrderController::class, 'pickedOrderIndex'])->name('picked.orders');
-        Route::get('/orders/shipped/index', [OrderController::class, 'shippedOrderIndex'])->name('shipped.orders');
-        Route::get('/orders/delivered/index', [OrderController::class, 'deliveredOrderIndex'])->name('delivered.orders');
-        Route::get('/orders/cancel/index', [OrderController::class, 'cancelOrderIndex'])->name('cancel.orders');
-        Route::get('/orders/return/index', [OrderController::class, 'returnOrderIndex'])->name('return.orders');
+        Route::prefix('orders')->group(function () {
+            Route::get('/', [OrderController::class, 'index'])->name('orders.index'); // Mostrar una lista de órdenes
+            Route::get('/create', [OrderController::class, 'create'])->name('orders.create'); // Mostrar el formulario de creación
+            Route::post('/', [OrderController::class, 'store'])->name('orders.store'); // Guardar una nueva orden
+            Route::get('/{id}', [OrderController::class, 'show'])->name('orders.show'); // Mostrar una orden específica
+            Route::get('/{id}/edit', [OrderController::class, 'edit'])->name('orders.edit'); // Mostrar el formulario de edición
+            Route::put('/{id}', [OrderController::class, 'update'])->name('orders.update'); // Actualizar una orden específica
+            Route::delete('/{id}', [OrderController::class, 'destroy'])->name('orders.destroy'); // Eliminar una orden específica
 
-        Route::get('/orders/status/update/{order_id}/{status}', [OrderController::class, 'orderStatusUpdate'])->name('order-status.update');
+            Route::get('/pending/index', [OrderController::class, 'pendingOrderIndex'])->name('pending.orders');
+            Route::get('/confirmed/index', [OrderController::class, 'confirmedOrderIndex'])->name('confirmed.orders');
+            Route::get('/processing/index', [OrderController::class, 'processingOrderIndex'])->name('processing.orders');
+            Route::get('/picked/index', [OrderController::class, 'pickedOrderIndex'])->name('picked.orders');
+            Route::get('/shipped/index', [OrderController::class, 'shippedOrderIndex'])->name('shipped.orders');
+            Route::get('/delivered/index', [OrderController::class, 'deliveredOrderIndex'])->name('delivered.orders');
+            Route::get('/cancel/index', [OrderController::class, 'cancelOrderIndex'])->name('cancel.orders');
+            Route::get('/return/index', [OrderController::class, 'returnOrderIndex'])->name('return.orders');
+
+            Route::get('/status/update/{order_id}/{status}', [OrderController::class, 'orderStatusUpdate'])->name('order-status.update');
+        });
+
+        Route::prefix('users')->group(function () {
+            Route::get('/', [UserController::class, 'index'])->name('users.index'); // Mostrar una lista de usuarios
+            Route::get('/create', [UserController::class, 'create'])->name('users.create'); // Mostrar el formulario de creación
+            Route::post('/', [UserController::class, 'store'])->name('users.store'); // Guardar un nuevo usuario
+            Route::get('/{id}', [UserController::class, 'show'])->name('users.show'); // Mostrar un usuario específico
+            Route::get('/{id}/edit', [UserController::class, 'edit'])->name('users.edit'); // Mostrar el formulario de edición
+            Route::put('/{id}', [UserController::class, 'update'])->name('users.update'); // Actualizar un usuario específico
+            Route::delete('/{id}', [UserController::class, 'destroy'])->name('users.destroy'); // Eliminar un usuario específico
+        });
+
         // Download Invoice route - admin
         Route::get('/invoice-download/{order_id}', [OrderController::class, 'adminInvoiceDownload'])->name('admin-invoice-download');
     });

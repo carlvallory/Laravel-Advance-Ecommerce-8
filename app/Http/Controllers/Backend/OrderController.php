@@ -50,7 +50,9 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $order = $this->orderService->createOrder($data);
+        return redirect()->route('orders.show', $order->id);
     }
 
     /**
@@ -92,9 +94,11 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $order = $this->orderService->updateOrder($id, $data);
+        return redirect()->route('orders.show', $order->id);
     }
 
     /**
@@ -103,9 +107,10 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy($id)
     {
-        //
+        $this->orderService->deleteOrder($id);
+        return redirect()->route('orders.index');
     }
 
     public function pendingOrderIndex()
