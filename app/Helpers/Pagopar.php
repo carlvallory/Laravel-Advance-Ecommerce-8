@@ -38,6 +38,7 @@ class Pagopar
     private $orderType;
     private $paymentMethod;
     private $paymentConfirm;
+    private $maximumPaymentDate;
 
     public $rollback;
     public $result;
@@ -59,6 +60,7 @@ class Pagopar
         $this->orderType = config('pagopar.order_type');
         $this->paymentMethod = config('pagopar.payment_method');
         $this->paymentConfirm = config('pagopar.unconfirmed_payment');
+        $this->maximumPaymentDate = config('pagopar.maximum_payment_date');
 
         $this->apiBuyUrl = $this->apiUrl . self::URL_SEPARATOR . $this->apiParam . self::URL_SEPARATOR . $this->apiBuyParam;
 
@@ -144,7 +146,7 @@ class Pagopar
     public static function getJSonCreateFormat(string $token, int $idOrder, int $totalAmount, array $data, $publicKey = null) {
         $obj = json_decode (json_encode ($data), false);
         $items = $obj->items;
-        $maximum_payment_date = Carbon::now()->addDays(3);
+        $maximum_payment_date = Carbon::now()->addDays(self::$maximumPaymentDate);
 
         $buyer = self::getJSonBuyerFormat(self::$buyer);
         $items = self::getJSonOrderItemFormat($items, self::$seller);

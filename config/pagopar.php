@@ -70,14 +70,14 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Default Pagopar Payment Method
+    | Default Pagopar ORDER Method
     |--------------------------------------------------------------------------
     |
-    | PAGOPAR BUY
+    | PAGOPAR ORDER
     |
     */
 
-    'orders'            => env('PAGOPAR_PAYMENT_METHOD', 'pedidos/1.1/traer'),
+    'orders'            => env('PAGOPAR_ORDER_METHOD', 'pedidos/1.1/traer'),
 
     /*
     |--------------------------------------------------------------------------
@@ -108,6 +108,8 @@ return [
     'payment_confirmed' => true,
 
     'unconfirmed_payment' => false,
+
+    'maximum_payment_date' => 2,
 
     /*
     |--------------------------------------------------------------------------
