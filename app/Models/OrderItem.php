@@ -11,6 +11,13 @@ class OrderItem extends Model
 
     protected $guarded = ['id'];
 
+    protected $fillable = [
+        'order_id',
+        'product_id',
+        'qty',
+        'unit_price'
+    ];
+
     public function order()
     {
         return $this->belongsTo(Order::class)->withDefault();

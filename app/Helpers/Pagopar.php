@@ -9,6 +9,7 @@ use App\Helpers\Buyer;
 use App\Helpers\Order;
 use App\Helpers\Seller;
 use Illuminate\Http\Client\Response;
+use App\Services\OrderService;
 use Exception;
 
 class Pagopar
@@ -40,6 +41,8 @@ class Pagopar
     private $paymentConfirm;
     private $maximumPaymentDate;
 
+    private $orderService;
+
     public $rollback;
     public $result;
     public $message;
@@ -70,6 +73,12 @@ class Pagopar
         $this->rollback = false;
         $this->result   = false;
         $this->message  = null;
+
+        $this->orderService = resolve(OrderService::class);
+    }
+
+    public function create(Order $order) {
+
     }
 
     public function createPayment($id, $amount, $description, $returnUrl)
@@ -161,7 +170,7 @@ class Pagopar
             'compras_items' => $items,
             'fecha_maxima_pago' => $maximum_payment_date,
             'id_pedido_comercio' => $idOrder,
-            'descripcion_resumen' => 'Ticket virtual a evento Ejemplo 2017',
+            'descripcion_resumen' => 'Ticket virtual a evento Ejemplo 2017', //Desc
             'forma_pago' => self::$paymentMethod
         ];
     }
