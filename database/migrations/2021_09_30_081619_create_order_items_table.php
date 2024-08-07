@@ -21,6 +21,7 @@ class CreateOrderItemsTable extends Migration
             $table->string('size')->nullable();
             $table->unsignedInteger('qty');
             $table->float('unit_price',8,2);
+            $table->string('category_id');
             $table->timestamps();
         });
     }
