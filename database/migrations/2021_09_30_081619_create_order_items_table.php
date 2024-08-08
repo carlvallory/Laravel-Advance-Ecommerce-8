@@ -19,9 +19,17 @@ class CreateOrderItemsTable extends Migration
             $table->foreignId('product_id')->constrained('products');
             $table->string('color')->nullable();
             $table->string('size')->nullable();
-            $table->unsignedInteger('qty');
+            $table->string('name');
+            $table->integer('quantity');
+            $table->bigInteger('category');
+            $table->string('public_key');
+            $table->string('url_imagen');
+            $table->text('description');
             $table->float('unit_price',8,2);
-            $table->string('category_id');
+            $table->string('seller_phone');
+            $table->string('seller_address');
+            $table->string('seller_ref');
+            $table->string('seller_coords');
             $table->timestamps();
         });
     }
