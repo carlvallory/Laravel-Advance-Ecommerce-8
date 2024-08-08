@@ -27,6 +27,10 @@ class OrderItem extends Model
         'seller_coords'
     ];
 
+    protected $hidden = [
+        'public_key'
+    ];
+
     public function order()
     {
         return $this->belongsTo(Order::class)->withDefault();
