@@ -17,6 +17,7 @@ class OrderItem extends Model
         'name',
         'quantity',
         'category',
+        'public_key',
         'url_imagen',
         'description',
         'unit_price',

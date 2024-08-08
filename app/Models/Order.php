@@ -11,6 +11,22 @@ class Order extends Model
 
     protected $guarded = ['id'];
 
+    protected $fillable = [
+        'token',
+        'public_token',
+        'monto_total',
+        'tipo_pedido',
+        'comprador_id',
+        'descripcion_resumen',
+        'fecha_maxima_pago',
+        'estado'
+    ];
+
+    protected $hidden = [
+        'token',
+        'public_token'
+    ];
+
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
