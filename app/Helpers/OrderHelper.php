@@ -2,14 +2,15 @@
 
 namespace App\Helpers;
 
-use App\Models\Order as OrderModel;
+use App\Models\Order;
+use App\Models\Buyer;
 use illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Log;
 use App\Helpers\Geo;
 use Exception;
 
-Class Order {
+Class OrderHelper {
 
     use Geo;
 
@@ -62,7 +63,7 @@ Class Order {
 
     public static function setOrderStatus($orderNumber) {
         try {
-            $pedido = OrderModel::where('numero_pedido', $orderNumber)->first();
+            $pedido = Order::where('numero_pedido', $orderNumber)->first();
             $pedido->estado = 'pagado';
             $pedido->save();
 

@@ -4,10 +4,10 @@ namespace App\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class OrderFacade extends Facade
+class PagoparFacade extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'order';
+        return 'pagopar';
     }
 }

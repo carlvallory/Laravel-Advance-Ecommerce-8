@@ -4,7 +4,7 @@ namespace App\Helpers;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DetallePedido {
+class OrderDetailHelper {
 
     private $name;
     private $description;

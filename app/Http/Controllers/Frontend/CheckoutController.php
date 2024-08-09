@@ -9,7 +9,7 @@ use App\Models\ShipDivision;
 use App\Models\Shipping;
 use App\Models\ShipState;
 use Illuminate\Http\Request;
-use App\Helpers\ShoppingCart;
+use App\Helpers\CartHelper;
 use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
@@ -103,9 +103,9 @@ class CheckoutController extends Controller
         $data['shipping_address'] = $request->shipping_address;
         $data['shipping_notes'] = $request->shipping_notes;
 
-        $carts = ShoppingCart::cartContent();
-        $cart_qty = ShoppingCart::cartCount();
-        $cart_total = ShoppingCart::cartTotal();
+        $carts = CartHelper::cartContent();
+        $cart_qty = CartHelper::cartCount();
+        $cart_total = CartHelper::cartTotal();
 
         switch ($request->payment_method) {
             case 'stripe':
@@ -152,10 +152,10 @@ class CheckoutController extends Controller
     {
         if(Auth::check()){
 
-            if (ShoppingCart::cartTotal() > 0) {
-                $carts = ShoppingCart::cartContent();
-                $cart_qty = ShoppingCart::cartCount();
-                $cart_total = ShoppingCart::cartTotal();
+            if (CartHelper::cartTotal() > 0) {
+                $carts = CartHelper::cartContent();
+                $cart_qty = CartHelper::cartCount();
+                $cart_total = CartHelper::cartTotal();
 
                 $divisions = ShipDivision::with(['districts', 'states'])->latest()->get();
                 //return $divisions;

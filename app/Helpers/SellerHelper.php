@@ -4,7 +4,7 @@ namespace App\Helpers;
 
 use Illuminate\Support\Facades\Config;
 
-Class Seller {
+Class SellerHelper {
 
     private $publicKey;
     private $privateKey;

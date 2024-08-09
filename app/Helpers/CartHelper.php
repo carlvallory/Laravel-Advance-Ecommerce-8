@@ -4,7 +4,7 @@ namespace App\Helpers;
 
 use Gloudemans\Shoppingcart\Cart;
 
-class ShoppingCart extends Cart {
+class CartHelper extends Cart {
 
     public static function cartAdd($id, $name = null, $qty = null, $price = null, $weight = 0, array $options = []) {
         return Cart::add($id, $name, $qty, $price, $weight, $options);

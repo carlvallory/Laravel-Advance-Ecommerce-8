@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\ShipDivision;
 use Illuminate\Http\Request;
-use App\Helpers\ShoppingCart;
+use App\Helpers\CartHelper;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Log;
@@ -24,7 +24,7 @@ class CartController extends Controller
         try {
 
             if($product->discount_price == NULL){
-                ShoppingCart::cartAdd([
+                CartHelper::cartAdd([
                     'id' => $id,
                     'name' => $request->product_name,
                     'qty' => $request->qty,
@@ -39,7 +39,7 @@ class CartController extends Controller
 
                 return response()->json(['success' => 'Successfully added on your cart'],200);
             }else{
-                ShoppingCart::cartAdd([
+                CartHelper::cartAdd([
                     'id' => $id,
                     'name' => $request->product_name,
                     'qty' => $request->qty,
@@ -64,9 +64,9 @@ class CartController extends Controller
     {
         try {
 
-            $carts = ShoppingCart::cartContent();
-            $cart_qty = ShoppingCart::cartCount();
-            $cart_total = ShoppingCart::cartTotal();
+            $carts = CartHelper::cartContent();
+            $cart_qty = CartHelper::cartCount();
+            $cart_total = CartHelper::cartTotal();
 
             return response()->json([
                 'carts' => $carts,
@@ -83,7 +83,7 @@ class CartController extends Controller
     public function removeMiniCart($rowId)
     {
         try {
-            ShoppingCart::cartRemove($rowId);
+            CartHelper::cartRemove($rowId);
             return response()->json(['success' => 'Product Remove from Cart'],200);
         } catch(Exception $e) {
             Log::alert($e);

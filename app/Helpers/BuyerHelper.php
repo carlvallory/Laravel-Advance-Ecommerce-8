@@ -5,7 +5,7 @@ namespace App\Helpers;
 use Illuminate\Support\Facades\Config;
 use App\Models\Buyer as BuyerModel;
 
-Class Buyer {
+Class BuyerHelper {
 
     private $publicKey;
     private $privateKey;

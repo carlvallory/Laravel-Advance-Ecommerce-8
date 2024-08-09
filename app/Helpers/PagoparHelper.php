@@ -5,14 +5,15 @@ namespace App\Helpers;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Carbon;
-use App\Helpers\Buyer;
-use App\Helpers\Order;
-use App\Helpers\Seller;
+use App\Models\Order;
+use App\Helpers\OrderHelper;
+use App\Helpers\BuyerHelper;
+use App\Helpers\SellerHelper;
 use Illuminate\Http\Client\Response;
 use App\Services\OrderService;
 use Exception;
 
-class Pagopar
+class PagoparHelper
 {
     const URL_SEPARATOR = '/';
 
@@ -51,7 +52,7 @@ class Pagopar
     {
         self::$publicKeyValue = config('pagopar.public_key');
         self::$privateKeyValue = config('pagopar.private_key');
-        self::$sellerObject = Seller::getSeller();
+        self::$sellerObject = SellerHelper::getSeller();
         //self::$buyerObject = Buyer::getBuyer([]);
 
         $this->publicKey = config('pagopar.public_key');
@@ -68,7 +69,7 @@ class Pagopar
         $this->apiBuyUrl = $this->apiUrl . self::URL_SEPARATOR . $this->apiParam . self::URL_SEPARATOR . $this->apiBuyParam;
 
         // $this->buyer    = Buyer::getBuyer();
-        $this->seller   = Seller::getSeller();
+        $this->seller   = SellerHelper::getSeller();
 
         $this->rollback = false;
         $this->result   = false;
@@ -83,9 +84,9 @@ class Pagopar
 
     public function createPayment($id, $amount, $description, $returnUrl)
     {
-        $this->hash = Order::getOrderHash($id, strval(floatval($amount)), $this->privateKey);
-        $this->buyer = Buyer::getBuyerArray($this->user->ruc, $this->user->email, 1, $this->user->name, $this->user->phone, $this->user->dir, $this->user->ci, $this->user->coords, "CI", $this->user->ref);
-        $this->order = Order::getOrderArray($this->user->city, $this->user->name, $this->order->qty, $this->order->category, $this->order->image, $this->order->desc, $this->order->id, $this->order->amount, $this->seller->phone, $this->seller->dir, $this->seller->coord, $this->seller->ref);
+        $this->hash = OrderHelper::getOrderHash($id, strval(floatval($amount)), $this->privateKey);
+        $this->buyer = BuyerHelper::getBuyerArray($this->user->ruc, $this->user->email, 1, $this->user->name, $this->user->phone, $this->user->dir, $this->user->ci, $this->user->coords, "CI", $this->user->ref);
+        $this->order = OrderHelper::getOrderArray($this->user->city, $this->user->name, $this->order->qty, $this->order->category, $this->order->image, $this->order->desc, $this->order->id, $this->order->amount, $this->seller->phone, $this->seller->dir, $this->seller->coord, $this->seller->ref);
         $this->json = $this->getJSonCreateFormat($this->hash, 1, 1, [], $this->publicKey); // TO DO
 
         $response = Http::post($this->apiUrl, [
@@ -217,8 +218,8 @@ class Pagopar
 
     public static function setBuyer(array $array) {
         try {
-            self::$buyer        = Buyer::getBuyer($array);
-            self::$buyerObject  = Buyer::getBuyer($array);
+            self::$buyer        = BuyerHelper::getStaticBuyer($array);
+            self::$buyerObject  = BuyerHelper::getStaticBuyer($array);
         } catch(Exception $e) {
             return false;
         }
