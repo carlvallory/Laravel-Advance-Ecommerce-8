@@ -234,6 +234,7 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
         // Facades
         'Order' => App\Facades\OrderFacade::class,
+        'Pagopar' => App\Facades\PagoparFacade::class,
 
     ],
 
