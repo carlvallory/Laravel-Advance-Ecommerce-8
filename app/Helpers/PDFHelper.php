@@ -4,7 +4,7 @@ namespace App\Helpers;
 
 use Barryvdh\DomPDF\PDF;
 
-class PDFs extends PDF {
+class PDFHelper extends PDF {
 
 
     public static function loadViews($view, $data = array(), $mergeData = array(), $encoding = null) {

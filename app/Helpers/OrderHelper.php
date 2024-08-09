@@ -7,12 +7,12 @@ use App\Models\Buyer;
 use illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Log;
-use App\Helpers\Geo;
+use App\Traits\HasGeo;
 use Exception;
 
 Class OrderHelper {
 
-    use Geo;
+    use HasGeo;
 
     private $publicKey;
     private $privateKey;

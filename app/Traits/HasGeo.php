@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Helpers;
+namespace App\Traits;
 
 use Malhal\Geographical\Geographical;
 
-trait Geo
+trait HasGeo
 {
     use Geographical;
 
