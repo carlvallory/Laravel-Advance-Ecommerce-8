@@ -26,6 +26,7 @@ use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\User\OrderDetailsController;
 use App\Http\Controllers\User\OrderHistoryController;
 use App\Http\Controllers\User\WishlistController;
+use App\Http\Controllers\PagoparController;
 
 /*
 |--------------------------------------------------------------------------
@@ -224,3 +225,9 @@ Route::middleware(['auth:admin'])->group(function(){
         Route::get('/invoice-download/{order_id}', [OrderController::class, 'adminInvoiceDownload'])->name('admin-invoice-download');
     });
 });
+
+Route::get('/pagopar/crear', [PagoparController::class, 'create']);
+Route::post('/pagopar/guardar', [PagoparController::class, 'store']);
+Route::post('/pagopar/respuesta', [PagoparController::class, 'response']);
+Route::get('/pagopar/resultado/{hash}', [PagoparController::class, 'result'])->name('result');
+Route::match(['get', 'post'], 'pagopar', [PagoparController::class, 'pagopar'])->name('pagopar');
