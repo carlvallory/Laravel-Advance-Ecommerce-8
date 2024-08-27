@@ -1,7 +1,7 @@
 @extends('frontend.frontend_master')
 
 @section('title')
-    Al Araf Fashion - Tag Product
+    Advance - Tag Product
 @endsection
 
 @section('frontend_content')

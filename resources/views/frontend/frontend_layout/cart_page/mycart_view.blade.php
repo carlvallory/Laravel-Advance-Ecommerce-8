@@ -1,7 +1,7 @@
 @extends('frontend.frontend_master')
 
 @section('title')
-    Al Araf Fashion - Cart Page
+    Advance - Cart Page
 @endsection
 
 @section('frontend_content')

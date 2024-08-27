@@ -6,16 +6,16 @@
 
 @if (request()->routeIs('home'))
     <!--  HOT DEALS  -->
-    @include('frontend.frontend_layout.widgets.hot-deals-widget')
+    {{-- @include('frontend.frontend_layout.widgets.hot-deals-widget') --}}
     <!--  HOT DEALS: END  -->
     <!--  SPECIAL OFFER  -->
-    @include('frontend.frontend_layout.widgets.special-offer-widget')
+    {{-- @include('frontend.frontend_layout.widgets.special-offer-widget') --}}
     <!--  SPECIAL OFFER : END  -->
     <!--  PRODUCT TAGS  -->
     {{-- @include('frontend.frontend_layout.widgets.product-tags-widget') --}}
     <!--  PRODUCT TAGS : END  -->
     <!--  SPECIAL DEALS  -->
-    @include('frontend.frontend_layout.widgets.special-deals-widget')
+    {{-- @include('frontend.frontend_layout.widgets.special-deals-widget') --}}
     <!--  SPECIAL DEALS : END  -->
     <!--  NEWSLETTER  -->
     @include('frontend.frontend_layout.widgets.newsletter-widget')

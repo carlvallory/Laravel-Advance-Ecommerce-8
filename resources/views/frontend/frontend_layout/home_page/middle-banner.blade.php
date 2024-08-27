@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="wide-banner cnt-strip">
-                <div class="image"> <img class="img-responsive" src="{{ asset('frontend') }}/assets/images/banners/home-banner.jpg" alt="">
+                <div class="image"> <img class="img-responsive" src="{{ asset('frontend') }}/assets/images/banners/home-banner.jpg" alt="" style="width: 100%">
                 </div>
             <div class="strip strip-text">
                 <div class="strip-inner">

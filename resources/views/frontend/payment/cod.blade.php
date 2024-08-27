@@ -1,7 +1,7 @@
 @extends('frontend.frontend_master')
 
 @section('title')
-    Al Araf Fashion - COD Page
+    Advance - COD Page
 @endsection
 
 @section('frontend_style')

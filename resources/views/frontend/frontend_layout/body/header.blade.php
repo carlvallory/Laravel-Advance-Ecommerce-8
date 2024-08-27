@@ -248,7 +248,7 @@
                                         </ul>
                                     </li>
                                 @endforeach
-                                <li class="dropdown  navbar-right special-menu"> <a href="#">Todays offer</a> </li>
+                                <!-- <li class="dropdown  navbar-right special-menu"> <a href="#">Todays offer</a> </li> -->
                             </ul>
                             <!-- /.navbar-nav -->
                             <div class="clearfix"></div>

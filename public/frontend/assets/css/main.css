@@ -1278,8 +1278,8 @@ header{background:#157ed2}
   margin: 0px;
   padding: 12px 19px 12px;
   text-align: center;
-    background-color: #fdd922;
-    border: 1px solid #e0bc27;
+    background-color: #14E0B9;
+    border: 1px solid #14C5E0;
 }
 .main-header .top-search-holder .search-area .search-button:after {
   color: #333;
@@ -1335,7 +1335,7 @@ header{background:#157ed2}
     left: 34px;
     top: 13px;
     width: 18px;
-    background: #fdd922;
+    background: #14E0B9;
     color: #0f6cb2;
     font-size: 11px;
     text-align: center;
@@ -1660,11 +1660,11 @@ header{background:#157ed2}
   font-family: 'Open Sans', sans-serif;
   padding: 12px 17px;
   text-transform: uppercase;
-  background-color: #fdd922;
-    border: 1px solid #e9c532;
+  background-color: #14E0B9;
+    border: 1px solid #14C5E0;
 	font-weight:700;
 	letter-spacing: 0.5px;
-	border-bottom:1px #f1ce3c solid
+	border-bottom:1px #157ED2 solid
 }
 .sidebar .side-menu .head .icon {
   margin-right: 5px;

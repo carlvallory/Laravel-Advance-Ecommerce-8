@@ -34,7 +34,7 @@ class StripeController extends Controller
         $charge = \Stripe\Charge::create([
         'amount' => $total_amount*100,
         'currency' => 'usd',
-        'description' => 'Al Araf Fashion Store',
+        'description' => 'Advance',
         'source' => $token,
         'metadata' => ['order_id' => uniqid()],
         ]);

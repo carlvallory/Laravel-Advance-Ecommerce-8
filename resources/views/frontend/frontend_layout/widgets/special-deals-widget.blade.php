@@ -1,7 +1,7 @@
 <div class="sidebar-widget outer-bottom-small wow fadeInUp">
     <h3 class="section-title">
-        @if (session()->get('language') == 'bangla')
-        বিশেষ চুক্তি
+        @if (session()->get('language') == 'esLA')
+        Promociones Especiales
         @else
         Special Deals
         @endif

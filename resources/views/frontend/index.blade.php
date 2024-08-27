@@ -1,7 +1,7 @@
 @extends('frontend.frontend_master')
 
 @section('title')
-    Al Araf Fashion
+    Advance
 @endsection
 
 @section('frontend_content')
@@ -18,14 +18,14 @@
                 <!--  SECTION – HERO : END  -->
 
                 <!--  INFO BOXES  -->
-                @include('frontend.frontend_layout.home_page.info-boxes')
+                {{-- @include('frontend.frontend_layout.home_page.info-boxes') --}}
                 <!--  INFO BOXES : END  -->
                 <!--  SCROLL TABS  -->
-                @include('frontend.frontend_layout.home_page.new-products')
+                {{-- @include('frontend.frontend_layout.home_page.new-products') --}}
                 <!-- /.scroll-tabs -->
                 <!--  SCROLL TABS : END  -->
                 <!--  WIDE PRODUCTS  -->
-                @include('frontend.frontend_layout.home_page.two-column-banner')
+                {{-- @include('frontend.frontend_layout.home_page.two-column-banner') --}}
                 <!--  WIDE PRODUCTS : END  -->
 
 
@@ -48,7 +48,7 @@
                 <!-- /.section -->
                 <!--  Category wise PRODUCTS : END  -->
                 <!--  BEST SELLER  -->
-                @include('frontend.frontend_layout.home_page.best-seller')
+                {{-- @include('frontend.frontend_layout.home_page.best-seller') --}}
                 <!-- /.sidebar-widget -->
                 <!--  BEST SELLER : END  -->
 
