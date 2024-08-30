@@ -81,15 +81,15 @@ class FrontendPageController extends Controller
     public function subcategoryProducts($id, $slug)
     {
         $subcategory_products = Product::where('status', 1)->where('subcategory_id', $id)->orderBy('id','DESC')->paginate(3);
-        //$categories = Category::with(['subcategory'])->orderBy('category_name_en', 'ASC')->get();
-        return view('frontend.frontend_layout.subcategory_page.subcategory_product_page', compact('subcategory_products'));
+        $categories = Category::with(['subcategory'])->orderBy('category_name_en', 'ASC')->get();
+        return view('frontend.frontend_layout.subcategory_page.subcategory_product_page', compact('subcategory_products', 'categories'));
     }
 
     public function subsubcategoryProducts($id, $slug)
     {
         $subsubcategory_products = Product::where('status', 1)->where('sub_subcategory_id', $id)->orderBy('id','DESC')->paginate(3);
-        //$categories = Category::with(['subcategory'])->orderBy('category_name_en', 'ASC')->get();
-        return view('frontend.frontend_layout.subcategory_page.subsubcategory_product_page', compact('subsubcategory_products'));
+        $categories = Category::with(['subcategory'])->orderBy('category_name_en', 'ASC')->get();
+        return view('frontend.frontend_layout.subcategory_page.subsubcategory_product_page', compact('subsubcategory_products', 'categories'));
     }
 
     public function productviewAjax($id)

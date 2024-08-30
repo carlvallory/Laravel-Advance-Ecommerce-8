@@ -152,7 +152,7 @@
                                                             @endif
                                                         </a>
                                                         </h3>
-                                                        <div class="rating rateit-small rateit"><button id="rateit-reset-2"
+                                                        <!-- <div class="rating rateit-small rateit"><button id="rateit-reset-2"
                                                                 data-role="none" class="rateit-reset"
                                                                 aria-label="reset rating" aria-controls="rateit-range-2"
                                                                 style="display: none;"></button>
@@ -164,7 +164,7 @@
                                                                     style="height: 14px; width: 56px;"></div>
                                                                 <div class="rateit-hover" style="height:14px"></div>
                                                             </div>
-                                                        </div>
+                                                        </div> -->
                                                         <div class="description"></div>
                                                         <div class="product-price">
                                                             @if ($product->discount_price == NULL)

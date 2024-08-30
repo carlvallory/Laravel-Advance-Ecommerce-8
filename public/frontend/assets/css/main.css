@@ -1458,13 +1458,13 @@ header{background:#157ed2}
   top: 90%;
 }
 .header-style-1 .header-nav .navbar-default .navbar-collapse .navbar-nav > li .menu-label.new-menu {
-  background: #f1c40f;
+  background: #157ED2;
 }
 .header-style-1 .header-nav .navbar-default .navbar-collapse .navbar-nav > li .menu-label.new-menu:after {
-  border-color: #f1c40f rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+  border-color: #157ED2 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
 }
 .header-style-1 .header-nav .navbar-default .navbar-collapse .navbar-nav > li .menu-label.new-menu:before {
-  border-color: #f1c40f rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+  border-color: #157ED2 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
 }
 .header-style-1 .header-nav .navbar-default .navbar-collapse .navbar-nav > li .menu-label.hot-menu {
   background: #ff7878;
@@ -2361,7 +2361,7 @@ header{background:#157ed2}
   letter-spacing:-1px
 }
 #owl-main .item .caption .big-text .highlight {
-  color: #f1c40f;
+  color: #157ED2;
 }
 #owl-main .item .caption .excerpt,
 #owl-main .item .caption .small {
@@ -2757,7 +2757,7 @@ age-container #owl-main .owl-next {
 .product .cart .action ul li.add-cart-button .btn.btn-primary.icon {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
-  background: #fdd922 ;
+  background: #14E0B9 ;
 }
 .product .cart .action ul li.lnk {
   margin: 10px 0px;
@@ -2833,7 +2833,7 @@ age-container #owl-main .owl-next {
 .cart .action .add-cart-button .btn.btn-primary.icon {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
-  background: #fdd922 ;
+  background: #14E0B9 ;
   color:#333
 }
 
@@ -2946,7 +2946,7 @@ age-container #owl-main .owl-next {
 }
 .cnt-strip .strip h2 {
   font-size: 36px;
-  color: #fdd922;
+  color: #14E0B9;
   margin: 0;
   text-transform: uppercase;
   font-family:'Montserrat', sans-serif;
@@ -3550,7 +3550,7 @@ age-container #owl-main .owl-next {
   line-height: 145px;
   text-transform: uppercase;
   font-family: 'Open Sans', sans-serif;
-  color: #fdd922;
+  color: #14E0B9;
 }
 .category-carousel .item .caption .excerpt {
   font-size:36px;
@@ -5486,7 +5486,7 @@ age-container #owl-main .owl-next {
   z-index: 1;
 }
 
-.checkout-btn { background:#fdd922; color:#333; padding: 10px 18px;}
+.checkout-btn { background:#14E0B9; color:#333; padding: 10px 18px;}
 
 
 .product-comparison .page-title {
@@ -5567,7 +5567,7 @@ age-container #owl-main .owl-next {
   line-height: 10px;
   border: medium none;
   color: #333;
-  background:#fdd922
+  background:#14E0B9
 }
 .body-content .x-page .x-text form input {
   border: 1px solid #e0e0e0;
